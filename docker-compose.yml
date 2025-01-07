@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres-container
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: app_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fastapi-container
+    ports:
+      - "8000:8000"
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=app_db
+      - POSTGRES_HOST=postgres
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:

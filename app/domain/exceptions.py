@@ -1,0 +1,3 @@
+ class StudentNotFoundError(Exception):
+    pass
+

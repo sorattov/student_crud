@@ -1,0 +1,12 @@
+# Diretórios a ignorar
+venv/
+__pycache__/
+.git/
+node_modules/
+
+# Arquivos a ignorar
+*.pyc
+*.pyo
+*.log
+*.db
+.env
